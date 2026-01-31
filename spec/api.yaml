@@ -1,0 +1,192 @@
+openapi: 3.0.4
+info:
+  title: QTradingBot
+  description: |-
+    This is the API specification of the `QTradingBot` 
+  version: 0.0.1
+servers:
+  - url: https://qbot.mooo.com
+
+paths:
+  /api/account:
+    get:
+      summary: Get account details
+      description: This is called on application open
+      parameters:
+        - name: session_id
+          in: cookie
+          description: ID to receive the user session
+          required: false
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "9991d14be1a7418bbcdefa24c16b4883"
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  balance:
+                    type: number
+                  currency:
+                    type: string
+    
+  /api/account/currency:
+    post:
+      summary: Set account currency
+      description: This sets the account currency
+      parameters:
+        - name: session_id
+          in: cookie
+          description: ID to receive the user session
+          required: true
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "9991d14be1a7418bbcdefa24c16b4883"
+      requestBody:
+        description: Object contaning the selected currency
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                currency:
+                  type: string
+                  example: "NGN"
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  balance:
+                    type: number
+                  currency:
+                    type: string
+
+  /api/trade/stocks:
+    get:
+      summary: Get list of stocks 
+      description: This gets the list of tradable stocks
+      parameters:
+        - name: session_id
+          in: cookie
+          description: ID to receive the user session
+          required: true
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "9991d14be1a7418bbcdefa24c16b4883"
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: array
+                items: 
+                  type: object
+                  properties:
+                    id:
+                      type: number
+                      example: 5
+                    name:
+                      type: string
+                      example: "Google"
+                    symbol:
+                      type: string
+                      example: "GOOGL"
+
+  /api/trade:
+    get:
+      summary: Get trade history (Websocket)
+      description: This gets the trade history (Websocket)
+      parameters:
+        - name: session_id
+          in: cookie
+          description: ID to receive the user session
+          required: true
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "9991d14be1a7418bbcdefa24c16b4883"
+      responses:
+        '101':
+          description: "Switching Protocols - The client is switching protocols as requested by the server."
+  
+    post:
+      summary: Start trading QBot
+      description: This starts the trading bot
+      parameters:
+        - name: session_id
+          in: cookie
+          description: ID to receive the user session
+          required: true
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "9991d14be1a7418bbcdefa24c16b4883"
+      requestBody:
+        description: Object contaning the selected currency
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                currency:
+                  type: string
+                  example: "NGN"
+                amount:
+                  type: number
+                  example: 50000
+                stop_loss:
+                  type: number
+                  example: 5000
+                take_profit:
+                  type: number
+                  example: 15000
+                duration:
+                  type: string
+                  example: "30D"
+      responses:
+        '200':
+          description: Successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties: 
+                  qbot_session_id:
+                    type: string
+                    example: "f112dbac091441ad92ce9a8d0251aadf"
+
+  /api/trade/chart:
+    get:
+      summary: Get chart data (Websocket)
+      description: This gets the chart data (Websocket)
+      parameters:
+        - name: session_id
+          in: cookie
+          description: ID to receive the user session
+          required: true
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "9991d14be1a7418bbcdefa24c16b4883"
+      responses:
+        '101':
+          description: "Switching Protocols - The client is switching protocols as requested by the server."
