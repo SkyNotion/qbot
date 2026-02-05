@@ -129,12 +129,9 @@ paths:
             schema:
               type: object
               properties:
-                stock_id:
-                  type: number
-                  example: 1
-                currency:
+                stock_symbol:
                   type: string
-                  example: "NGN"
+                  example: "APPL"
                 amount:
                   type: number
                   example: 50000
