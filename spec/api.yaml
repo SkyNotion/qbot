@@ -152,9 +152,10 @@ paths:
               schema:
                 type: object
                 properties: 
-                  qbot_session_id:
+                  balance:
+                    type: number
+                  currency:
                     type: string
-                    example: "f112dbac091441ad92ce9a8d0251aadf"
 
   /api/trade/chart:
     get:
