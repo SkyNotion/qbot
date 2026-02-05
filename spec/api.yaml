@@ -129,6 +129,9 @@ paths:
             schema:
               type: object
               properties:
+                stock_id:
+                  type: number
+                  example: 1
                 currency:
                   type: string
                   example: "NGN"
