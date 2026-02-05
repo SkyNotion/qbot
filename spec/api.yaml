@@ -108,23 +108,6 @@ paths:
                       example: "GOOGL"
 
   /api/trade:
-    get:
-      summary: Get trade history (Websocket)
-      description: This gets the trade history (Websocket)
-      parameters:
-        - name: session_id
-          in: cookie
-          description: ID to receive the user session
-          required: true
-          content:
-            text/plain:
-              schema:
-                type: string
-                example: "9991d14be1a7418bbcdefa24c16b4883"
-      responses:
-        '101':
-          description: "Switching Protocols - The client is switching protocols as requested by the server."
-  
     post:
       summary: Start trading QBot
       description: This starts the trading bot
