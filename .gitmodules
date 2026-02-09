@@ -1,0 +1,7 @@
+[submodule "frontend"]
+	path = frontend
+	url = https://github.com/joshua1code/Q-bot-FD.git
+	branch = working
+[submodule "backend"]
+	path = backend
+	url = https://github.com/DaNutmeg/qbot-server.git
